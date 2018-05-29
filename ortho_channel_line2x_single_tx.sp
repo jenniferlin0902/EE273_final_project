@@ -98,21 +98,15 @@
  Xvn1    jn1   jn2     (via)				* Package via
 
  Xl1 jp2 jn2   jp3 jn3 (diff_stripline)
-+                      length=len_c			* Line seg 1
++                      length=len_c			* Line seg couple cap
 
- Xvp2    jp3  jp3_cin  (via) 				* DC blocking cap vias
- Xvn2    jn3  jn3_cin  (via) 				* DC blocking cap vias
- 
- Cblockp jp3_cin jp3_cout 100n
- Cblockn jn3_cin jn3_cout 100n 
-
- Xvp3    jp3_cout  jp4  (via) 				* DC blocking cap vias
- Xvn3    jn3_cout  jn4  (via) 				* DC blocking cap vias
+ Xvp2    jp3  jp4 		 (via) 				* DC blocking cap vias
+ Xvn2    jn3  jn4  		(via) 				* DC blocking cap vias
  
 Xl4 jp4 jn4 jp6 jn6 (diff_stripline)
-+                        length=len_l			* Line seg 4
- Xvp4    jp6   jp7     (via) zvia=40			* Daughter card via
- Xvn4    jn6   jn7     (via) zvia=40			* Daughter card via
++                        length=len_l		* Line seg line card 
+ Xvp4    jp6   jp7     (via) zvia=40		* Daughter card via
+ Xvn4    jn6   jn7     (via) zvia=40		* Daughter card via
  Xk1 jp6 jn6   jp7 jn7 (xconn)				* Xcede+ connector
 *Xkp1 0  jp4   jp5     (conn)				* Backplane connector
 *Xkn1 0  jn4   jn5     (conn) 				* Backplane connector

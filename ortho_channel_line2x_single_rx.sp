@@ -103,34 +103,26 @@
 
  Xvp2    jp3   jp4     (via) zvia=40			* Daughter card via
  Xvn2    jn3   jn4     (via) zvia=40			* Daughter card via
- Xk1 jp4 jn4   jp5 jn5 (xconn)				* Xcede+ connector
- Xvp3    jp5   jp6     (mvia)				* Backplane via
- Xvn3    jn5   jn6     (mvia)				* Backplane via
+ Xk1 jp4 jn4   jp5 jn5 (xconn)					* Xcede+ connector
+ Xvp3    jp5   jp6     (mvia)					* Backplane via
+ Xvn3    jn5   jn6     (mvia)					* Backplane via
 
- Tmpp    jp6 0 jp7 0   Z0=50 TD='len_t*170p'		* Midplane seg 2-P
- Tmpn    jn6 0 jn7 0   Z0=50 TD='len_t*170p'		* Midplane seg 2-N
+ Tmpp    jp6 0 jp7 0   Z0=50 TD='len_t*170p'	* Midplane seg 2-P
+ Tmpn    jn6 0 jn7 0   Z0=50 TD='len_t*170p'	* Midplane seg 2-N
 
- Xvp4    jp7   jp8     (mvia) 				* Backplane via
- Xvn4    jn7   jn8     (mvia) 				* Backplane via
+ Xvp4    jp7   jp8     (mvia) 					* Backplane via
+ Xvn4    jn7   jn8     (mvia) 					* Backplane via
  Xk2 jp8 jn8   jp9 jn9 (xconn)
-*Xkp2 0  jp9   jp8     (conn)				* Backplane connector
-*Xkn2 0  jn9   jn8     (conn)				* Backplane connector
+*Xkp2 0  jp9   jp8     (conn)					* Backplane connector
+*Xkn2 0  jn9   jn8     (conn)					* Backplane connector
  Xvp5    jp9   jp10    (via) zvia=40			* Daughter card via
  Xvn5    jn9   jn10    (via) zvia=40			* Daughter card via
 
  Xl3 jp10 jn10 jp11 jn11 (diff_stripline)
 +                        length=len_x			* Line seg 3
 
- Xvp6    jp11  jp11_cin  (via) 				* DC blocking cap vias
- Xvn6    jn11  jn11_cin  (via) 				* DC blocking cap vias
-
-Cblockp  jp11_cin jp12 100n. 			* DC blocking cap
-Cblockn jn11_cin cp12 100n
-
- Xvp7    jp12  jp12  (via) 				* DC blocking cap vias
- Xvn7    jn11  jn12  (via) 				* DC blocking cap vias
-
-
+ Xvp6    jp11  jp12  (via) 				* DC blocking cap vias
+ Xvn6    jn11  jn12  (via) 				* DC blocking cap vias
 
  Xl4 jp12 jn12 jp13 jn13 (diff_stripline)
 +                        length=len_c			* Line seg 4

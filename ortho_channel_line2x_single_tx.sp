@@ -35,7 +35,7 @@
 * PCB Line Lengths *
  .PARAM len_c	= 1		* Line segment 1 length, inches
  .PARAM len_x	= 11.6		* Line segment 2 length, inches
- .PARAM len_l	= 9.5		* Line segment 3 length, inches
+ .PARAM len_l	= 10.5		* Line segment 3 length, inches
  .PARAM len_t   = 0.25 		* line segment for t line in connector
 * Eye delay -- In awaves viewer, plot signal rx_diff against signal eye
 *              then adjust parameter edui to center the data eye.
@@ -125,7 +125,7 @@ Xl4 jp4 jn4 jp6 jn6 (diff_stripline)
  Xvn7    jn11   jn12    (via) zvia=40			* Daughter card via
 
  Xl3 jp12 jn12 jp13 jn13 (diff_stripline)
-+                        length=len_x			* Line seg 3
++                        length=(len_x-lenc)			* Line seg 3
 
 
  Xvp8    jp13  jp14  (via)				* Package via

@@ -119,7 +119,7 @@
  Xvn5    jn9   jn10    (via) zvia=40			* Daughter card via
 
  Xl3 jp10 jn10 jp11 jn11 (diff_stripline)
-+                        length=(len_x-lenc)			* Line seg 3
++                        length=(len_x-len_c)			* Line seg 3
 
  Xvp6    jp11  jp12  (via) 				* DC blocking cap vias
  Xvn6    jn11  jn12  (via) 				* DC blocking cap vias

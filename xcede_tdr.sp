@@ -1,15 +1,15 @@
 * Test of Xcede+ 4x8 Orthogonal Connector s24p Model *
 
- .PARAM rref	= 50
+ .PARAM rref	= 48.5
  .PARAM trise	= 35p
 
  * Positive TDR Input *
- V1p p   gnd  PULSE 0v 2v 0 trise trise 0.5 1
+ V1p p   gnd  PULSE 0v 1.25v 0 trise trise 0.5 1
  Rsp p   inp  rref 
  T1p inp 0    1 0 Z0=rref TD=0.5n
  
  * Negative TDR Input *
- V1n n   gnd  PULSE 0v -2v 0 trise trise 0.5 1
+ V1n n   gnd  PULSE 0v -1.25v 0 trise trise 0.5 1
  Rsn n   inn  rref 
  T1n inn 0    3 0 Z0=rref TD=0.5n
  
@@ -21,14 +21,14 @@
  T2n 4 0 outn 0 Z0=rref TD=0.5n
  Rtn outn     0 rref
 
- Ex  tx_diff 0  (inp,inn) 1
- Ex  rx_diff 0  (outp,outn) 1
-
+ Ex1  tx_diff 0  (inp,inn) 1
+ Ex2  rx_diff 0  (outp,outn) 1
+ Ex3  forward_xtalk_diff 0 (16, 14) 1
 * Midplane Side Terminations *
 *R1    1 0  rref
 *R3    3 0  rref
- R5    5 0  rref
- R7    7 0  rref
+R5    5 0  rref
+R7    7 0  rref
  R9    9 0  rref
  R11  11 0  rref
  R13  13 0  rref
@@ -60,8 +60,6 @@
  .MODEL s_model S TSTONEFILE='./Orthogonal_rev12_Full_Final.s24p'
 
  * Simulation Controls *
- .PROBE V(inp) V(outp) impedp=PAR('rref*V(inp)/(V(p)-V(inp))')
- .PROBE V(inn) V(outn) impedn=PAR('rref*V(inn)/(V(n)-V(inn))')
  .PROBE TRAN           impedd=PAR('2*rref*V(inp,inn)/(V(p,n)-V(inp,inn))')
  .OPTION post accurate=1 *probe 
  .TRAN 1p 3n

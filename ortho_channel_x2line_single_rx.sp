@@ -22,15 +22,15 @@
 
 * CTLE Settings *
 *.PARAM az1     = 3.125g        * CTLE zero frequency, Hz
- .PARAM az1     = 5g            * CTLE zero frequency, Hz
+ .PARAM az1     = 1.45g            * CTLE zero frequency, Hz
 *.PARAM ap1     = 3.125g        * CTLE primary pole frequency, Hz
- .PARAM ap1     = 5g            * CTLE primary pole frequency, Hz
+ .PARAM ap1     = 5.35g            * CTLE primary pole frequency, Hz
  .PARAM ap2     = 10g           * CTLE secondary pole frequency, Hz
 
 * Driver Pre-emphais *
- .PARAM pre1	=  0.00		* Driver pre-cursor pre-emphasis
- .PARAM post1	=  0.00		* Driver 1st post-cursor pre-emphasis
- .PARAM post2	=  0.00		* Driver 2nd post-cursor pre-emphasis
+ .PARAM pre1	=  0.1205		* Driver pre-cursor pre-emphasis
+ .PARAM post1	=  0.2574		* Driver 1st post-cursor pre-emphasis
+ .PARAM post2	=  0.0042		* Driver 2nd post-cursor pre-emphasis
 
 * PCB Line Lengths *
  .PARAM len_c   = 1             * Line segment 1 length, inches
@@ -54,11 +54,13 @@
 *                       Simulation Controls and Alters                  *
 *                                                                       *
 *************************************************************************
- .TRAN 5p simtime *SWEEP DATA=plens
+ .OPTIONS post
+ .AC DEC 1000 (100k, 100g) SWEEP DATA=plens
  .DATA	plens
 +       az1     ap1     ap2	pre1	post2
 *+	3.125g	3.125g	10g	0.0	0.0
-+	5g	5g	10g	0.0	0.0
++ 	5g 	5g 	10g 	0.0	0.0
++	1.45g	5g	10g	0.1205	0.042
  .ENDDATA
 
 

@@ -83,8 +83,10 @@
 *Xs  inp inn  (bitpattern) dc0=0 dc1=1 baud='1/bps' latency=0 tr=trise
 
 * AC Signal Source *
- Vs  inp inn   AC 1
- Vs_dup inp_d inn_d AC 1
+ *Vs  inp inn   AC 2 	* use 2V for s11 s.t |Vf| is 1V
+ *Vs_dup inp_d inn_d AC 2 
+ Vs  inp inn   AC 2 	* use 1V for s21
+ Vs_dup inp_d inn_d AC 2 
 
 *************************************************************************
 *                                                                       *
@@ -158,6 +160,7 @@
  E1  Vf 0 (outp_d,outn_d) 1
  E2  Vi 0 (jp1, jn1) 1
  E3  Vs11 0 (Vi, Vf) 1
+ E4  Vs21 0 (jrp, jrn) 1
 
  R1 Vf 0  1G
  R2 Vi 0  1G

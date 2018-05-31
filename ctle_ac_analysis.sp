@@ -112,8 +112,8 @@
  .AC DEC 1000 (100k,100g) SWEEP DATA=plens
  .DATA	plens
 +	az1	ap1	ap2
-+	1k	1k	100g
-+	meg	3.125g	10g
++	5.35g	5.35g	10g
++	1.5g	5.25g	10g
  .ENDDATA
 
 *.TRAN 5p simtime

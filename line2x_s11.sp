@@ -260,7 +260,7 @@
 *   W2 inn 0 outn 0 RLGCMODEL=stripline6_fr4 N=1 l='length*0.0254' delayopt=3
  .ENDS (diff_stripline)
 
- .INCLUDE './diff_stripline.rlgc'
+ .INCLUDE './rlgc/diff_aniso_stripline_Meg42.rlgc'
 
 *SYSTEM_NAME : stripline6_fr4
 *

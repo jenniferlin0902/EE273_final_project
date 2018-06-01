@@ -124,10 +124,10 @@
 *Xk2  0  jp9   jn9   jp8  jn8  (conn)			* Backplane connector
 
 * 4x8 Orthogonal Midplane Interconnect *
- Xk1  0  jp4   jn4   jp5  jn5  (conn)		    * 4x8 Ortho connector stack
+ Xk1  0  jp4   jn4   jp5  jn5  (xconn)		    * 4x8 Ortho connector stack
  Tmp1    jp5 0 jp8 0 Z0=50 TD=40p		    * Through-midplane via
  Tmp2    jn5 0 jn8 0 Z0=50 TD=40p		    * Through-midplane via
- Xk2  0  jp9   jn9   jp8  jn8  (conn)		    * 4x8 Ortho connector stack
+ Xk2  0  jp9   jn9   jp8  jn8  (xconn)		    * 4x8 Ortho connector stack
 *Xk1  0  jp4   jn4   jp9  jn9  (conn)		    * 4x8 Ortho connector stack
 
 * 6x12 Orthogonal Midplane Interconnect *
@@ -176,6 +176,7 @@
  .INCLUDE './tx_4tap_diff.inc'
  .INCLUDE './rx_eq_diff.inc'
  .INCLUDE './filter.inc'
+ .INCLUDE './xcede_ortho_4x8.inc'
 
 
 *************************************************************************
@@ -193,56 +194,7 @@
 *                                                                       *
 *************************************************************************
 *************************************************************************
- .SUBCKT (conn) ref inp inn outp outn					*
-*    T1  inp ref outp ref Z0=50 TD=150p					*
-*    T2  inn ref outn ref Z0=50 TD=150p					*
-* Midplane Side Terminations *
-*R1    1 0  50
-*R3    3 0  50
- R5    5 0  50
- R7    7 0  50
- R9    9 0  50
- R11  11 0  50
- R13  13 0  50
- R15  15 0  50
- R17  17 0  50
- R19  19 0  50
- R21  21 0  50
- R23  23 0  50
- R25  25 0  50
- R27  27 0  50
- R29  29 0  50
- R31  31 0  50
 
-* Connector *
- S1 inp outp inn outn   5   6   7   8   9   10   11   12
-+    13   14  15   16  17  18  19  20  21   22   23   24   MNAME=s_model
-* S1  inp outp inn outn   5   6   7   8   9   10   11   12   13   14   15   16
-*+     17   18  19   20  21  22  23  24  25   26   27   28   29   30   31   32  MNAME=s_model
-
-* Daughter Card Side Terminations *
-*R2    2 0  50
-*R4    4 0  50
- R6    6 0  50
- R8    8 0  50
- R10  10 0  50
- R12  12 0  50
- R14  14 0  50
- R16  16 0  50
- R18  18 0  50
- R20  20 0  50
- R22  22 0  50
- R24  24 0  50
- R26  26 0  50
- R28  28 0  50
- R30  30 0  50
- R32  32 0  50
-
-* Connector S-parameter Model *
- .MODEL s_model S TSTONEFILE='./Orthogonal_rev12_Full_Final.s24p'
-*.MODEL s_model S TSTONEFILE='./XCedeplus_100ohm_2p68_Ortho_2mm_Sig_3mm_GND_Wipe_EF_GHpairs_Only_20144301_IdEM.s32p'
-
- .ENDS (conn)								*
 *************************************************************************
 *************************************************************************
 
@@ -254,35 +206,13 @@
 *                                                                       *
 *************************************************************************
 *************************************************************************
- .SUBCKT (diff_stripline) inp inn outp outn length=1 *inch
-    W1 inp inn 0 outp outn 0 RLGCMODEL=diff_stripline N=2 l='length*0.0254' delayopt=3
-*   W1 inp 0 outp 0 RLGCMODEL=stripline6_fr4 N=1 l='length*0.0254' delayopt=3
-*   W2 inn 0 outn 0 RLGCMODEL=stripline6_fr4 N=1 l='length*0.0254' delayopt=3
+* Differential Pair Stripline *
+ .SUBCKT (diff_stripline)  in1 in2 out1 out2 length=1 *inch
+     W1  in1 in2 0 out1 out2 0  RLGCmodel=diff_stripline  N=2  L='0.0254*length'
  .ENDS (diff_stripline)
 
  .INCLUDE './rlgc/diff_aniso_stripline_Meg42.rlgc'
 
-*SYSTEM_NAME : stripline6_fr4
-*
-*  ------------------------------------ Z = 4.012800e-04
-*  //// Top Ground Plane //////////////
-*  ------------------------------------ Z = 3.860400e-04
-*       diel_1   H = 3.708000e-04
-*  ------------------------------------ Z = 1.524000e-05
-*  //// Bottom Ground Plane ///////////
-*  ------------------------------------ Z = 0
-*
-* L(H/m), C(F/m), Ro(Ohm/m), Go(S/m), Rs(Ohm/(m*sqrt(Hz)), Gd(S/(m*Hz))
-*
-*.MODEL stripline6_fr4 W MODELTYPE=RLGC, N=1
-*+ Lo = 3.365634e-07
-*+ Co = 1.322366e-10
-*+ Ro = 7.474906e+00
-*+ Go = 0.000000e+00
-*+ Rs = 1.003105e-03
-*+ Gd = 2.492601e-11
-*************************************************************************
-*************************************************************************
 
 * Daughter Card Via Sub-circuit -- typical values for 0.093" thick PCBs *
  .SUBCKT (via) in out  Z_via=30 TD_via=20p

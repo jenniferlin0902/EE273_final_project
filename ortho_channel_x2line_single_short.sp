@@ -22,21 +22,27 @@
 
 * CTLE Settings *
 *.PARAM az1     = 3.125g        * CTLE zero frequency, Hz
- .PARAM az1     = 1.45g            * CTLE zero frequency, Hz
+ .PARAM az1     = 5g            * CTLE zero frequency, Hz
 *.PARAM ap1     = 3.125g        * CTLE primary pole frequency, Hz
- .PARAM ap1     = 5.35g            * CTLE primary pole frequency, Hz
+ .PARAM ap1     = 5g            * CTLE primary pole frequency, Hz
  .PARAM ap2     = 10g           * CTLE secondary pole frequency, Hz
 
 * Driver Pre-emphais *
- .PARAM pre1	=  0.1205		* Driver pre-cursor pre-emphasis
- .PARAM post1	=  0.2574		* Driver 1st post-cursor pre-emphasis
- .PARAM post2	=  0.0042		* Driver 2nd post-cursor pre-emphasis
+ .PARAM pre1	=  0.00		* Driver pre-cursor pre-emphasis
+ .PARAM post1	=  0.00		* Driver 1st post-cursor pre-emphasis
+ .PARAM post2	=  0.00		* Driver 2nd post-cursor pre-emphasis
 
 * PCB Line Lengths *
- .PARAM len_c   = 1             * Line segment 1 length, inches
- .PARAM len_x   = 2.5          * Line segment 2 length, inches
- .PARAM len_l   = 5            * Line segment 3 length, inches
+ .PARAM len_c   = 1             * Line segment cap length, inches
+ .PARAM len_x   = 11.6          * Line segment xbar length, inches
+ .PARAM len_l   = 10.5           * Line segment linecard length, inches
  .PARAM len_t   = 0.25          * line segment for t line in connector
+
+ .PARAM len_c   = 1             * Line segment cap length, inches
+ .PARAM len_x   = 2.5           * Line segment xbar length, inches
+ .PARAM len_l   = 5          	* Line segment linecard length, inches
+ .PARAM len_t   = 0.25          * line segment for t line in connector
+
 
 * Eye delay -- In awaves viewer, plot signal rx_diff against signal eye
 *              then adjust parameter edui to center the data eye.
@@ -54,13 +60,11 @@
 *                       Simulation Controls and Alters                  *
 *                                                                       *
 *************************************************************************
- .OPTIONS post
- .AC DEC 1000 (100k, 100g) SWEEP DATA=plens
+ .TRAN 5p simtime *SWEEP DATA=plens
  .DATA	plens
 +       az1     ap1     ap2	pre1	post2
 *+	3.125g	3.125g	10g	0.0	0.0
-+ 	5g 	5g 	10g 	0.0		0.0
-+	1.45g	5g	10g	0.1205	0.042
++	5g	5g	10g	0.0	0.0
  .ENDDATA
 
 
